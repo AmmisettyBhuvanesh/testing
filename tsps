@@ -1,0 +1,22 @@
+# Get System Details
+ 
+# Hostname
+$hostname = hostname
+ 
+# Operating System
+$os = Get-WmiObject -Class Win32_OperatingSystem | Select-Object -ExpandProperty Caption
+ 
+# Processor
+$processor = Get-WmiObject -Class Win32_Processor | Select-Object -ExpandProperty Name
+ 
+# Memory (RAM)
+$memory = Get-WmiObject -Class Win32_ComputerSystem | Select-Object -ExpandProperty TotalPhysicalMemory
+$memoryGB = [math]::Round($memory / 1GB, 2)
+ 
+# Display the details
+Write-Host "System Details"
+Write-Host "-------------"
+Write-Host "Hostname: $hostname"
+Write-Host "Operating System: $os"
+Write-Host "Processor: $processor"
+Write-Host "Memory (RAM): $memoryGB GB"
